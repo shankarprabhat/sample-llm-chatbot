@@ -1,0 +1,83 @@
+<html>
+    <style>
+        #response-question {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-top: 10px;
+            font-family: Arial, sans-serif;
+            font-size: 16px;    
+            color: #333;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            max-width: 600px;
+            word-wrap: break-word;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+
+    <!-- <style>
+        #response-question {    
+            position: relative;
+            background: #e0f7fa;
+            border-radius: 15px;
+            padding: 10px 15px;
+            max-width: 400px;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+
+        #response-question::after {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: -10px;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 10px 10px 10px 0;
+            border-color: transparent #e0f7fa transparent transparent;
+        }
+    </style> -->
+
+<head>
+    <title>Chatbot</title>
+</head>
+<body>
+    <h1>Chatbot</h1>
+    <textarea id="userInput" placeholder="Type a message"></textarea>
+    <button onclick="sendMessage()">Send</button>
+    <div id="response-question"></div>
+
+    <script>
+        async function sendMessage() {
+            const message = document.getElementById('userInput').value;
+            const responseDiv = document.getElementById('response-question');
+
+            console.log(message);  // Print the message to the console
+
+            try {
+
+                const response = await fetch('http://localhost:5000/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ message })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                responseDiv.innerHTML = data.response;
+            }
+
+        catch (error) {
+            console.error("Error communicating with the API:", error);
+            responseDiv.innerHTML = "Error: Unable to get a response from the chatbot.";
+        }
+    }
+    </script>
+</body>
+</html>
