@@ -55,9 +55,9 @@
 
             console.log(message);  // Print the message to the console
 
-            try {
-
-                const response = await fetch('http://localhost:5000/chat', {
+            try {                
+                const baseUrl = 'https://sample-llm-chatbot-two.vercel.app'
+                const response = await fetch(baseUrl + '/api/chat', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
