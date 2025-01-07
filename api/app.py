@@ -35,7 +35,7 @@ def chat():
     import requests
     # from pprint import pprint
 
-    TOKEN = "Bearer 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"
+    TOKEN = "Bearer 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"
 
     API_URL = 'https://api-inference.huggingface.co/models/deepset/roberta-base-squad2'
     headers = {"Authorization": TOKEN}
@@ -51,15 +51,21 @@ def chat():
    
     def query(payload):
         response = requests.post(API_URL, headers=headers, json=payload)
-        response.raise_for_status()  # Raise exception for HTTP errors
+        # response.raise_for_status()  # Raise exception for HTTP errors
         return response.json()
 
     print("step8")
     params = {'max_length': 200, 'top_k': 10, 'temperature': 2.5}
     output = query({'inputs': {"question": user_input,"context": "My name is Suvojit and I am a Senior Data Scientist"},'parameters': params})
     # pprint('output',output)
+    print('output',output)
     print("step9")
-    return jsonify({"response": output[0]['answer']})
 
-# if __name__ == "__main__":
-#     app.run(debug=True)
+    try:
+        response_val = output[0]['answer']
+    except:
+        response_val = output
+    return jsonify(response_val)
+
+if __name__ == "__main__":
+    app.run(debug=True)
