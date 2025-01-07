@@ -6,6 +6,8 @@ import os
 
 os.environ["TRANSFORMERS_CACHE"] = "/tmp"
 
+print("Is /tmp writable?", os.access("/tmp", os.W_OK))
+
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
 # CORS(app, resources={r"/chat": {"origins": "http://localhost:3000"}}) # Enable CORS for /chat route
@@ -38,10 +40,12 @@ def chat():
 
     print('Request:', request.json)
     user_input = request.json.get("message")
+    print("Transformers cache directory:", os.environ.get("TRANSFORMERS_CACHE"))
 
     # The Entertheaccesskeyhere is just a placeholder, which can be changed according to the user's access key
     def query(payload):
         response = requests.post(API_URL, headers=headers, json=payload)
+        response.raise_for_status()  # Raise exception for HTTP errors
         return response.json()
 
     params = {'max_length': 200, 'top_k': 10, 'temperature': 2.5}
