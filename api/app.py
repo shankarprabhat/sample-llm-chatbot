@@ -1,6 +1,6 @@
 # Flask application for the chatbot
 from flask import Flask, request, jsonify
-from transformers import pipeline
+# from transformers import pipeline
 from flask_cors import CORS
 import os
 
@@ -41,8 +41,7 @@ def chat():
     print('Request:', request.json)
     user_input = request.json.get("message")
     print("Transformers cache directory:", os.environ.get("TRANSFORMERS_CACHE"))
-
-    # The Entertheaccesskeyhere is just a placeholder, which can be changed according to the user's access key
+   
     def query(payload):
         response = requests.post(API_URL, headers=headers, json=payload)
         response.raise_for_status()  # Raise exception for HTTP errors
@@ -53,5 +52,5 @@ def chat():
     # pprint('output',output)
     return jsonify({"response": output[0]['answer']})
 
-if __name__ == "__main__":
-    app.run(debug=True)
+# if __name__ == "__main__":
+#     app.run(debug=True)
