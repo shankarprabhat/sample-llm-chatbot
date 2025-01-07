@@ -2,6 +2,9 @@
 from flask import Flask, request, jsonify
 from transformers import pipeline
 from flask_cors import CORS
+import os
+
+os.environ["TRANSFORMERS_CACHE"] = "/tmp"
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
