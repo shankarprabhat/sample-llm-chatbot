@@ -9,7 +9,9 @@ os.environ["TRANSFORMERS_CACHE"] = "/tmp"
 print("Is /tmp writable?", os.access("/tmp", os.W_OK))
 
 app = Flask(__name__)
+print("step1")
 CORS(app)  # Enable CORS for all routes
+print("step2")
 # CORS(app, resources={r"/chat": {"origins": "http://localhost:3000"}}) # Enable CORS for /chat route
 
 # Load the LLM model (adjust as needed)
@@ -29,7 +31,7 @@ def chat():
     # }
     # response = chatbot(QA_input)
     # return jsonify({"response": response['answer']})
-
+    print("step3")
     import requests
     # from pprint import pprint
 
@@ -38,18 +40,25 @@ def chat():
     API_URL = 'https://api-inference.huggingface.co/models/deepset/roberta-base-squad2'
     headers = {"Authorization": TOKEN}
 
+    print("step4")
+
     print('Request:', request.json)
+    print("step5")
     user_input = request.json.get("message")
+    print("step6")
     print("Transformers cache directory:", os.environ.get("TRANSFORMERS_CACHE"))
+    print("step7")
    
     def query(payload):
         response = requests.post(API_URL, headers=headers, json=payload)
         response.raise_for_status()  # Raise exception for HTTP errors
         return response.json()
 
+    print("step8")
     params = {'max_length': 200, 'top_k': 10, 'temperature': 2.5}
     output = query({'inputs': {"question": user_input,"context": "My name is Suvojit and I am a Senior Data Scientist"},'parameters': params})
     # pprint('output',output)
+    print("step9")
     return jsonify({"response": output[0]['answer']})
 
 # if __name__ == "__main__":
