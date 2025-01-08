@@ -20,7 +20,7 @@ print("step2")
 # small_model = "deepset/tinyroberta-squad2"
 # chatbot = pipeline("question-answering", model=small_model)
 
-@app.route('/')
+@app.route('/home')
 def home():
     return 'Hello, World to the LLM Chatbot app!'
 
