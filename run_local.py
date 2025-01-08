@@ -1,4 +1,9 @@
-from transformers import AutoModelForQuestionAnswering, AutoTokenizer, pipeline
+# from transformers import AutoModelForQuestionAnswering, AutoTokenizer
+# from transformers import AutoModelForQuestionAnswering, AutoTokenizer, pipeline
+# from transformers import pipeline
+import requests
+from pprint import pprint
+
 
 call_pipeline = False
 # model_name = "deepset/roberta-base-squad2"
@@ -7,19 +12,17 @@ if call_pipeline is True:
     model_name = "deepset/tinyroberta-squad2"
 
     # a) Get predictions
-    nlp = pipeline('question-answering', model=model_name, tokenizer=model_name)
-    QA_input = {
-        'question': 'What is LLM?',
-        'context': 'LLM provides the capability to understand languages.'
-    }
-    res = nlp(QA_input)
-    print(res['answer'])
+    # nlp = pipeline('question-answering', model=model_name, tokenizer=model_name)
+    # QA_input = {
+    #     'question': 'What is LLM?',
+    #     'context': 'LLM provides the capability to understand languages.'
+    # }
+    # res = nlp(QA_input)
+    # print(res['answer'])
 
 call_inference_api = True
 
 if call_inference_api is True:
-    import requests
-    from pprint import pprint
 
     TOKEN = "Bearer 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"
 
