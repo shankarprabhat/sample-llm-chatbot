@@ -25,7 +25,7 @@ def home():
     return 'Hello, World to the LLM Chatbot app!'
 
 @app.route('/about')
-def home():
+def about():
     return 'Trying the about route!'
 
 @app.route('/chat', methods=["POST"])
