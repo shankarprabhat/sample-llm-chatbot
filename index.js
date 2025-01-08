@@ -20,6 +20,17 @@ app.post("/send-message", async (req, res) => {
     }
 });
 
-app.listen(3000, () => {
-    console.log("Node.js server running on port 3000");
-});
+// Use the environment variable
+const port = process.env.PORT || 3000; // Default to 3000 if PORT is not set
+
+// If using local, Start the server
+// app.listen(port, () => {
+//     console.log("Server running on http://localhost:3000");
+// });
+
+// Export the app for Vercel
+module.exports = app;
+
+// app.listen(3000, () => {
+//     console.log("Node.js server running on port 3000");
+// });
