@@ -24,6 +24,10 @@ print("step2")
 def home():
     return 'Hello, World to the LLM Chatbot app!'
 
+@app.route('/about')
+def home():
+    return 'Trying the about route!'
+
 @app.route('/chat', methods=["POST"])
 def chat():
     # print('Request:', request.json)
