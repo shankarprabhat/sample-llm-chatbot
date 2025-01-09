@@ -10,7 +10,7 @@ print("Is /tmp writable?", os.access("/tmp", os.W_OK))
 
 app = Flask(__name__)
 print("step1")
-# CORS(app)  # Enable CORS for all routes
+CORS(app)  # Enable CORS for all routes
 print("step2")
 # CORS(app, resources={r"/chat": {"origins": "http://localhost:3000"}}) # Enable CORS for /chat route
 
