@@ -73,7 +73,8 @@ def chat():
         response_val = output[0]['answer']
     except:
         response_val = output
-    return jsonify(response_val)
+    # return jsonify(response_val)
+    return response_val
 
 # # if __name__ == "__main__":
 # #     app.run(debug=True)

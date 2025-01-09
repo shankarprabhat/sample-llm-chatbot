@@ -74,8 +74,11 @@
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
 
-                const data = await response.json();
-                responseDiv.innerHTML = data.response;
+                // const data = await response.json();
+                // responseDiv.innerHTML = data.response;
+
+                const data = await response;
+                responseDiv.innerHTML = data;
             }
 
         catch (error) {
