@@ -28,52 +28,52 @@ def home():
 def about():
     return 'Trying the about route!'
 
-# @app.route('/chat', methods=["POST"])
-# def chat():
-#     # print('Request:', request.json)
-#     # user_input = request.json.get("message")
+@app.route('/chat', methods=["POST"])
+def chat():
+    # print('Request:', request.json)
+    # user_input = request.json.get("message")
     
-#     # QA_input = {
-#     # "question": user_input,
-#     # "context": "LLM provides the capability to understand languages."
-#     # }
-#     # response = chatbot(QA_input)
-#     # return jsonify({"response": response['answer']})
-#     print("step3")
-#     import requests
-#     # from pprint import pprint
+    # QA_input = {
+    # "question": user_input,
+    # "context": "LLM provides the capability to understand languages."
+    # }
+    # response = chatbot(QA_input)
+    # return jsonify({"response": response['answer']})
+    print("step3")
+    import requests
+    # from pprint import pprint
 
-#     TOKEN = "Bearer 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"
+    TOKEN = "Bearer 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"
 
-#     API_URL = 'https://api-inference.huggingface.co/models/deepset/roberta-base-squad2'
-#     headers = {"Authorization": TOKEN}
+    API_URL = 'https://api-inference.huggingface.co/models/deepset/roberta-base-squad2'
+    headers = {"Authorization": TOKEN}
 
-#     print("step4")
+    print("step4")
 
-#     print('Request:', request.json)
-#     print("step5")
-#     user_input = request.json.get("message")
-#     print("step6")
-#     print("Transformers cache directory:", os.environ.get("TRANSFORMERS_CACHE"))
-#     print("step7")
+    print('Request:', request.json)
+    print("step5")
+    user_input = request.json.get("message")
+    print("step6")
+    print("Transformers cache directory:", os.environ.get("TRANSFORMERS_CACHE"))
+    print("step7")
    
-#     def query(payload):
-#         response = requests.post(API_URL, headers=headers, json=payload)
-#         # response.raise_for_status()  # Raise exception for HTTP errors
-#         return response.json()
+    def query(payload):
+        response = requests.post(API_URL, headers=headers, json=payload)
+        # response.raise_for_status()  # Raise exception for HTTP errors
+        return response.json()
 
-#     print("step8")
-#     params = {'max_length': 200, 'top_k': 10, 'temperature': 2.5}
-#     output = query({'inputs': {"question": user_input,"context": "My name is Suvojit and I am a Senior Data Scientist"},'parameters': params})
-#     # pprint('output',output)
-#     print('output',output)
-#     print("step9")
+    print("step8")
+    params = {'max_length': 200, 'top_k': 10, 'temperature': 2.5}
+    output = query({'inputs': {"question": user_input,"context": "My name is Suvojit and I am a Senior Data Scientist"},'parameters': params})
+    # pprint('output',output)
+    print('output',output)
+    print("step9")
 
-#     try:
-#         response_val = output[0]['answer']
-#     except:
-#         response_val = output
-#     return jsonify(response_val)
+    try:
+        response_val = output[0]['answer']
+    except:
+        response_val = output
+    return jsonify(response_val)
 
 # # if __name__ == "__main__":
 # #     app.run(debug=True)
